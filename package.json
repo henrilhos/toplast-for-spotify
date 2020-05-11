@@ -1,6 +1,6 @@
 {
   "name": "@toplast/spotify",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Create creative charts using your Spotify data.",
   "repository": "git@github.com:castilh0s/toplast-for-spotify.git",
   "author": "Henrique de Castilhos <henrique@castilhos.dev>",
