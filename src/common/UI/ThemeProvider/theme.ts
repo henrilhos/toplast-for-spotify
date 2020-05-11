@@ -4,7 +4,10 @@ export type Colors =
   | 'dark'
   | 'black'
   | 'grey'
+  | 'green'
   | 'white'
+  | 'white-light'
+  | 'white-lighter'
   | 'error'
 export type FontSizes =
   | 'display-1'
@@ -35,7 +38,10 @@ const theme = {
     dark: '#101010',
     black: '#000000',
     grey: '#262525',
+    green: '#1db954',
     white: '#FFFFFF',
+    'white-light': '#ffffff70',
+    'white-lighter': '#ffffff15',
     error: '#B71C1C',
   },
   fontSizes: {

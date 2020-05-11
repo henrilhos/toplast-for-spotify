@@ -7,6 +7,8 @@ const Index: React.FC = () => {
   return (
     <Core>
       <Header />
+
+      <div style={{ height: '200vh' }} />
     </Core>
   )
 }
