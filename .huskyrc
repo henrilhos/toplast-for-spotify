@@ -1,0 +1,7 @@
+{
+  "hooks": {
+    "pre-commit": "echo \"Running Husky\" && lint-staged",
+    "pre-push": "echo \"Running Husky\" && yarn validate",
+    "commit-msg": "echo \"Running Husky\" && commitlint -E HUSKY_GIT_PARAMS"
+  }
+}
