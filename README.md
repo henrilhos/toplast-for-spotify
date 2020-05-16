@@ -30,7 +30,7 @@ Install project dependencies
 $ yarn install
 ```
 
-Copy `.env.sample` and rename it to `.env`, then you can change the `SPOTIFY_CLIENT_ID` to your real Spotify client id.
+Copy `.env.sample` and rename it to `.env`, then you can change the `SPOTIFY_CLIENT_ID` to your real Spotify client id
 
 ## Running the app
 
@@ -41,11 +41,8 @@ $ yarn dev
 # build
 $ yarn yarn
 
-# run linte
+# run linter
 $ yarn validate
-
-# web mode
-$ yarn start:web
 ```
 
 ## License
