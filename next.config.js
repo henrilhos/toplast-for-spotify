@@ -1,8 +1,9 @@
+const withImages = require('next-images')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 const { version } = require('./package.json')
 
-module.exports = {
+module.exports = withImages({
   webpack(config) {
     if (config.resolve.plugins) {
       config.resolve.plugins.push(new TsconfigPathsPlugin())
@@ -21,4 +22,4 @@ module.exports = {
     SPOTIFY_URL: process.env.SPOTIFY_URL,
   },
   typescript: { ignoreDevErrors: true },
-}
+})
