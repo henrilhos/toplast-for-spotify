@@ -39,7 +39,7 @@ export default class MyDocument extends Document {
       <html lang="en">
         <Head>
           <link
-            href="https://fonts.googleapis.com/css?family=Montserrat:400,800&display=swap"
+            href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800&display=swap"
             rel="stylesheet"
           />
         </Head>
