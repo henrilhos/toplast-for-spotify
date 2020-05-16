@@ -18,7 +18,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Lint
-        run: yarn validate:lint
+        run: yarn lint
 
   build:
     name: Build
@@ -36,4 +36,4 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build
-        run: yarn validate:ts
+        run: yarn build
