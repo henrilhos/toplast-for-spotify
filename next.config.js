@@ -1,21 +1,24 @@
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
-const { version } = require("./package.json");
+const { version } = require('./package.json')
 
 module.exports = {
   webpack(config) {
     if (config.resolve.plugins) {
-      config.resolve.plugins.push(new TsconfigPathsPlugin());
+      config.resolve.plugins.push(new TsconfigPathsPlugin())
     } else {
-      config.resolve.plugins = [new TsconfigPathsPlugin()];
+      config.resolve.plugins = [new TsconfigPathsPlugin()]
     }
 
-    return config;
+    return config
   },
   generateBuildId: async () => version,
   experimental: {
     reactRefresh: true,
   },
-  env: {},
+  env: {
+    SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
+    SPOTIFY_URL: process.env.SPOTIFY_URL,
+  },
   typescript: { ignoreDevErrors: true },
-};
+}
