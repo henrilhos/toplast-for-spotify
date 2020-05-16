@@ -5,7 +5,7 @@ export const SpotifyContext = createContext({
   token: '',
   isAuthenticated: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setToken: (_v: string) => {},
+  setToken: (_v?: string) => {},
 })
 
 export const SpotifyProvider: React.FC = ({ children }) => {

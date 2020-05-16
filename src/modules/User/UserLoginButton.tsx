@@ -9,7 +9,7 @@ import {
 import { SpotifyContext } from 'common/contexts'
 
 const UserLoginButton: React.FC = (props) => {
-  const { setToken, isAuthenticated } = useContext(SpotifyContext)
+  const { setToken } = useContext(SpotifyContext)
 
   const onRequest = () => {
     // eslint-disable-next-line no-console
@@ -18,9 +18,6 @@ const UserLoginButton: React.FC = (props) => {
 
   const onSuccess = (response: { access_token: string }) => {
     setToken(response.access_token)
-
-    // eslint-disable-next-line no-console
-    console.log(isAuthenticated)
   }
 
   const onFailure = (response: Error) => {
