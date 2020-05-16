@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import { WHILE_HOVER, WHILE_TAP } from 'common/animations'
 import { MAIN_BREAKPOINT } from 'common/sizes'
 
-type Variant = 'normal' | 'outline'
+export type Variant = 'normal' | 'outline'
 
 type ColorSchema = {
   [key in Variant]: { [key in 'backgroundColor' | 'borderColor']: string }

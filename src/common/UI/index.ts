@@ -5,3 +5,4 @@ export { Text } from './Text'
 export { theme, ThemeProvider } from './ThemeProvider'
 
 export type { Colors, FontSizes, Theme } from './ThemeProvider'
+export type { Variant } from './Button'
