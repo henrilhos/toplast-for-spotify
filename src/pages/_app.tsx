@@ -3,7 +3,7 @@ import React from 'react'
 
 import 'wipe.css'
 
-import { SpotifyProvider } from 'common/services/contexts'
+import { SpotifyProvider } from 'common/contexts'
 import { Layout, ThemeProvider } from 'common/UI'
 
 class MyApp extends App {

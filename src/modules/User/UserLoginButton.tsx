@@ -6,7 +6,7 @@ import {
   SPOTIFY_URL,
   SPOTIFY_SCOPE,
 } from './config/constants'
-import { SpotifyContext } from 'common/services/contexts'
+import { SpotifyContext } from 'common/contexts'
 
 const UserLoginButton: React.FC = (props) => {
   const { setToken, isAuthenticated } = useContext(SpotifyContext)
