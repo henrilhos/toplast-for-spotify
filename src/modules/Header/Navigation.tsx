@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import styled from 'styled-components'
 
-import { User } from './User'
+import { UserAvatar } from './UserAvatar'
 import { MENU } from 'common/constants'
+import { SpotifyContext } from 'common/contexts'
+import { UserInformation, getUserInformation } from 'common/services'
 import { Text } from 'common/UI'
+import User from 'modules/User'
 
 const Menu = styled.nav`
   flex: none;
@@ -47,6 +50,26 @@ const MenuItem = styled(Text)`
 `
 
 const Navigation: React.FC = () => {
+  const { setToken, token } = useContext(SpotifyContext)
+
+  const [userData, setUserData] = useState<UserInformation>()
+
+  const endSession = () => {
+    setToken()
+  }
+
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await getUserInformation(token)
+
+      setUserData(user)
+    }
+
+    if (token) {
+      getUser()
+    }
+  }, [token])
+
   return (
     <>
       <Menu>
@@ -66,7 +89,13 @@ const Navigation: React.FC = () => {
         })}
       </Menu>
 
-      <User />
+      <User>
+        <UserAvatar
+          name={userData?.userName}
+          image={userData?.userImage}
+          logOut={endSession}
+        />
+      </User>
     </>
   )
 }
