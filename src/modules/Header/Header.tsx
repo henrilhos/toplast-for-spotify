@@ -33,7 +33,7 @@ const MenuWrapper = styled.div`
   /* Mobile */
   @media (max-width: 60rem) {
     position: fixed;
-    top: 4.8rem;
+    top: 3.9rem;
     left: 0;
     width: 100%;
     height: 120%;
@@ -62,13 +62,8 @@ const MenuWrapper = styled.div`
 
 const Background = styled.header`
   background: var(--color-primary);
-  padding-top: 1.5rem;
   height: ${HEADER_HEIGHT};
-
-  /* Desktop */
-  @media (min-width: 60rem) {
-    padding-top: 1rem;
-  }
+  display: flex;
 
   position: fixed;
   top: 0;
