@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Text } from 'common/UI'
-import { User } from 'modules/Header/User'
+import { Text, Button } from 'common/UI'
+import User from 'modules/User'
 
 const Wrapper = styled.div`
   text-align: center;
@@ -26,6 +26,10 @@ const UserWithMargin = styled(User)`
   margin: 0.5rem;
 `
 
+const ButtonWithMargin = styled(Button)`
+  margin: 0.5rem;
+`
+
 const SocialLink = styled.a`
   color: var(--color-primary);
 `
@@ -46,7 +50,14 @@ const Content: React.FC = () => {
         Spotify.
       </TextWithMargin>
 
-      <UserWithMargin variant="normal" />
+      <TextWithMargin color="black">
+        Choose what you want to see:
+      </TextWithMargin>
+
+      <UserWithMargin variant="normal">
+        <ButtonWithMargin>Top Tracks</ButtonWithMargin>
+        <ButtonWithMargin>Top Artists</ButtonWithMargin>
+      </UserWithMargin>
 
       <TextWithMargin size="body-1" color="black" style={{ fontWeight: 400 }}>
         Made with{' '}
