@@ -1,0 +1,41 @@
+[
+  {
+    "display_name": "castilh0s",
+    "images": [
+      {
+        "url": "https://i.scdn.co/image/ab6775700000ee85454f49a6282e23a9f6e19d2d"
+      }
+    ]
+  },
+  {
+    "items": [
+      {
+        "images": [
+          {
+            "url": "https://i.scdn.co/image/d5dbea70408f7d8a6165c36f78e2cf7038c22c91"
+          }
+        ],
+        "name": "Rodrigo Zin"
+      }
+    ]
+  },
+  {
+    "items": [
+      {
+        "album": {
+          "images": [
+            {
+              "url": "https://i.scdn.co/image/ab67616d0000b2730e7be22f5999cccd97c734d3"
+            }
+          ]
+        },
+        "artists": [
+          {
+            "name": "Zudizilla"
+          }
+        ],
+        "name": "Intro 11"
+      }
+    ]
+  }
+]

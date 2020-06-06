@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 
+import { SpotifyContext, ChartContext } from 'common/contexts'
+import { getUserTopArtistsAndTracks } from 'common/services'
 import { Text, Button } from 'common/UI'
 import User from 'modules/User'
 
@@ -35,6 +37,15 @@ const SocialLink = styled.a`
 `
 
 const Content: React.FC = () => {
+  const { token } = useContext(SpotifyContext)
+  const { setChart } = useContext(ChartContext)
+
+  const handleChartGeneration = async (type: 'artists' | 'tracks') => {
+    const data = await getUserTopArtistsAndTracks(token, type)
+
+    setChart(data)
+  }
+
   return (
     <Wrapper>
       <TextWithMargin
@@ -55,8 +66,12 @@ const Content: React.FC = () => {
       </TextWithMargin>
 
       <UserWithMargin variant="normal">
-        <ButtonWithMargin>Top Tracks</ButtonWithMargin>
-        <ButtonWithMargin>Top Artists</ButtonWithMargin>
+        <ButtonWithMargin onClick={() => handleChartGeneration('tracks')}>
+          Top Tracks
+        </ButtonWithMargin>
+        <ButtonWithMargin onClick={() => handleChartGeneration('artists')}>
+          Top Artists
+        </ButtonWithMargin>
       </UserWithMargin>
 
       <TextWithMargin size="body-1" color="black" style={{ fontWeight: 400 }}>

@@ -3,7 +3,7 @@ import React from 'react'
 
 import 'wipe.css'
 
-import { SpotifyProvider } from 'common/contexts'
+import { ChartProvider, SpotifyProvider } from 'common/contexts'
 import { Layout, ThemeProvider } from 'common/UI'
 
 class MyApp extends App {
@@ -11,13 +11,15 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
 
     return (
-      <SpotifyProvider>
-        <ThemeProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
-      </SpotifyProvider>
+      <ChartProvider>
+        <SpotifyProvider>
+          <ThemeProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ThemeProvider>
+        </SpotifyProvider>
+      </ChartProvider>
     )
   }
 }

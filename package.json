@@ -19,6 +19,7 @@
     "framer-motion": "^1.10.3",
     "next": "9.3.6",
     "next-images": "^1.4.0",
+    "node-vibrant": "^3.1.5",
     "react": "16.13.1",
     "react-cookie": "^4.0.3",
     "react-dom": "16.13.1",
