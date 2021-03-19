@@ -17,7 +17,7 @@ module.exports = withImages({
   },
   generateBuildId: async () => version,
   env: {
-    SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
-    SPOTIFY_REDIRECT_URL: process.env.SPOTIFY_URL,
+    NEXT_PUBLIC_SPOTIFY_CLIENT_ID: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
+    NEXT_PUBLIC_SPOTIFY_REDIRECT_URL: process.env.NEXT_PUBLIC_SPOTIFY_URL,
   },
 })

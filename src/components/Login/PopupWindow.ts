@@ -24,9 +24,9 @@ type PopupWindowResponse = {
 
 const SPOTIFY_SCOPE =
   'user-top-read user-read-private user-read-recently-played'
-const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID ?? ''
-const SPOTIFY_REDIRECT_URL =
-  process.env.SPOTIFY_REDIRECT_URL ?? 'http://localhost:3000'
+const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID as string
+const SPOTIFY_REDIRECT_URL = process.env
+  .NEXT_PUBLIC_SPOTIFY_REDIRECT_URL as string
 
 class PopupWindow {
   private readonly url: string
