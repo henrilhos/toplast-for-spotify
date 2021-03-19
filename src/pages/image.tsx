@@ -32,10 +32,10 @@ const Image = () => {
   return (
     <Core>
       <SEO />
-      <Header />
-      <Chart id={CHART_ID} isHidden />
+      {/* <Header /> */}
+      <Chart id={CHART_ID} isHidden={false} />
 
-      {image && <img alt="chart" src={image} />}
+      {/* {image && <img alt="chart" src={image} />} */}
     </Core>
   )
 }
