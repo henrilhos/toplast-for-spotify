@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const withImages = require('next-images')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
@@ -14,12 +16,8 @@ module.exports = withImages({
     return config
   },
   generateBuildId: async () => version,
-  experimental: {
-    reactRefresh: true,
-  },
   env: {
     SPOTIFY_CLIENT_ID: process.env.SPOTIFY_CLIENT_ID,
-    SPOTIFY_URL: process.env.SPOTIFY_URL,
+    SPOTIFY_REDIRECT_URL: process.env.SPOTIFY_URL,
   },
-  typescript: { ignoreDevErrors: true },
 })

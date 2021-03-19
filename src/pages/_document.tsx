@@ -1,53 +1,59 @@
+import { ServerStyleSheets as MaterialUiServerStyleSheets } from '@material-ui/core/styles'
 import Document, {
+  DocumentContext,
+  Html,
   Head,
   Main,
   NextScript,
-  DocumentContext,
 } from 'next/document'
 import React from 'react'
-import { ServerStyleSheet } from 'styled-components'
+import { ServerStyleSheet as StyledComponentSheets } from 'styled-components'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const sheet = new ServerStyleSheet()
+    const styledComponentSheet = new StyledComponentSheets()
+    const materialUiSheets = new MaterialUiServerStyleSheets()
     const originalRenderPage = ctx.renderPage
 
     try {
       ctx.renderPage = () =>
         originalRenderPage({
           enhanceApp: (App) => (props) =>
-            sheet.collectStyles(<App {...props} />),
+            styledComponentSheet.collectStyles(
+              materialUiSheets.collect(<App {...props} />)
+            ),
         })
 
       const initialProps = await Document.getInitialProps(ctx)
       return {
         ...initialProps,
         styles: (
-          <>
+          <React.Fragment key="styles">
             {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
+            {materialUiSheets.getStyleElement()}
+            {styledComponentSheet.getStyleElement()}
+          </React.Fragment>
         ),
       }
     } finally {
-      sheet.seal()
+      styledComponentSheet.seal()
     }
   }
 
   render() {
     return (
-      <html lang="en">
+      <Html lang="en">
         <Head>
           <link
-            href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800&display=swap"
             rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
         </Head>
         <body>
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     )
   }
 }
