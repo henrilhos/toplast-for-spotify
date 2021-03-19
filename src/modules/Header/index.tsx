@@ -1,17 +1,28 @@
-import { AppBar, Box, Toolbar, Typography } from '@material-ui/core'
+import { createStyles, makeStyles } from '@material-ui/core'
+import AppBar from '@material-ui/core/AppBar'
+import Box from '@material-ui/core/Box'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
 import { useState } from 'react'
-import styled from 'styled-components'
 
-import { APP_NAME, VERSION } from 'common/constants'
+import { APP_NAME } from 'common/constants'
 import Menu from 'components/Menu'
 import ToggleButton from 'components/ToggleButton'
 
-const Version = styled(Typography)`
-  margin-left: 0.5rem;
-`
+const useStyles = makeStyles(() =>
+  createStyles({
+    toolbar: {
+      alignItems: 'center',
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: '100%',
+    },
+  })
+)
 
 const Header = (): JSX.Element => {
   const [isMenuOpen, setMenuState] = useState(false)
+  const classes = useStyles()
 
   const handleMenuState = () => {
     setMenuState((prevState) => !prevState)
@@ -19,21 +30,13 @@ const Header = (): JSX.Element => {
 
   return (
     <AppBar position="fixed">
-      <Toolbar>
-        <Box
-          alignItems="center"
-          display="flex"
-          justifyContent="space-between"
-          width="100%"
-        >
-          <Box alignItems="center" display="flex">
-            <Typography variant="h6">{APP_NAME}</Typography>
-            <Version variant="body2">v{VERSION}</Version>
-          </Box>
-
-          <ToggleButton onClick={handleMenuState} />
-          <Menu open={isMenuOpen} />
+      <Toolbar className={classes.toolbar}>
+        <Box alignItems="center" display="flex">
+          <Typography variant="h6">{APP_NAME}</Typography>
         </Box>
+
+        <ToggleButton onClick={handleMenuState} />
+        <Menu open={isMenuOpen} />
       </Toolbar>
     </AppBar>
   )

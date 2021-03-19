@@ -2,13 +2,11 @@
 const pkg: {
   description: string
   url: string
-  version: string
 } = require('../../package.json')
 /* eslint-enable @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-assignment */
 
 export const APP_NAME = 'Toplast for Spotify'
 export const DESCRIPTION = pkg.description
-export const VERSION = pkg.version
 export const URL = pkg.url
 
 // Share

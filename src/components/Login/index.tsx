@@ -17,12 +17,7 @@ const getColor = (variant?: 'contained' | 'outlined' | 'text') => {
 }
 
 const Login = ({ children, variant = 'text' }: Props) => {
-  const { isAuthenticated, setToken } = useContext(SpotifyContext)
-
-  // const onRequest = () => {
-  //   // eslint-disable-next-line no-console
-  //   console.log('onRequest')
-  // }
+  const { isAuthenticated, setToken, user } = useContext(SpotifyContext)
 
   const onSuccess = ({ access_token }: PopupWindowResponse) => {
     if (setToken) setToken(access_token)
@@ -36,14 +31,12 @@ const Login = ({ children, variant = 'text' }: Props) => {
   const onButtonClick = () => {
     const popup = PopupWindow.open()
 
-    // onRequest()
-
     popup
       .then((value: PopupWindowResponse) => onSuccess(value))
       .catch((error: Error) => onFailure(error))
   }
 
-  if (isAuthenticated) {
+  if (isAuthenticated && user) {
     return <>{children}</>
   }
 
