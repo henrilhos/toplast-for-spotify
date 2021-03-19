@@ -1,26 +1,11 @@
-<h1 align="center">Lastfm for Spotify</h1>
-
-<p align="center">
-  <a href="https://github.com/castilh0s/toplast-for-spotify/actions?query=workflow%3ARelease">
-    <img
-      alt="Release"
-      src="https://github.com/castilh0s/toplast-for-spotify/workflows/Release/badge.svg"
-    />
-  </a>
-  <a href="https://github.com/castilh0s/toplast-for-spotify/actions?query=workflow%3AChecks">
-    <img
-      alt="Checks"
-      src="https://github.com/castilh0s/toplast-for-spotify/workflows/Checks/badge.svg"
-    />
-  </a>
-</p>
+<h1 align="center">Toplast for Spotify</h1>
 
 ## Prerequisites
 
 What things you need to install the software and how to install them
 
-- [Node](https://nodejs.org/) v12.16.3 or higher
-- [Yarn](https://yarnpkg.com/) v1.22.4 or higher
+- [Node](https://nodejs.org/) v14.13.1 or higher
+- [Yarn](https://yarnpkg.com/) v1.22.10 or higher
 
 ## Installation
 
@@ -30,7 +15,7 @@ Install project dependencies
 $ yarn install
 ```
 
-Copy `.env.sample` and rename it to `.env`, then you can change the `SPOTIFY_CLIENT_ID` to your real Spotify client id
+Copy `.env.sample` and rename it to `.env`, then you can change the `SPOTIFY_CLIENT_ID` to your real Spotify API key
 
 ## Running the app
 
@@ -42,7 +27,7 @@ $ yarn dev
 $ yarn yarn
 
 # run linter
-$ yarn validate
+$ yarn lint
 ```
 
 ## License
