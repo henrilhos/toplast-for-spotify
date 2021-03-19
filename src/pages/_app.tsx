@@ -1,27 +1,49 @@
-import App from 'next/app'
-import React from 'react'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import {
+  createMuiTheme,
+  ThemeProvider,
+  StylesProvider,
+} from '@material-ui/core/styles'
+import { AppProps } from 'next/app'
+import { useEffect } from 'react'
 
-import 'wipe.css'
+import { ChartProvider } from 'contexts/Chart'
+import { DependenciesProvider } from 'contexts/Dependencies'
+import { SpotifyProvider } from 'contexts/Spotify'
 
-import { ChartProvider, SpotifyProvider } from 'common/contexts'
-import { Layout, ThemeProvider } from 'common/UI'
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#d51007',
+    },
+    secondary: {
+      main: '#fff',
+    },
+  },
+})
 
-class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props
+function App({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    const jssStyles = document.querySelector('#jss-server-side')
 
-    return (
-      <ChartProvider>
-        <SpotifyProvider>
-          <ThemeProvider>
-            <Layout>
+    if (jssStyles && jssStyles.parentElement)
+      jssStyles.parentElement.removeChild(jssStyles)
+  }, [])
+
+  return (
+    <DependenciesProvider>
+      <StylesProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <SpotifyProvider>
+            <ChartProvider>
+              <CssBaseline />
               <Component {...pageProps} />
-            </Layout>
-          </ThemeProvider>
-        </SpotifyProvider>
-      </ChartProvider>
-    )
-  }
+            </ChartProvider>
+          </SpotifyProvider>
+        </ThemeProvider>
+      </StylesProvider>
+    </DependenciesProvider>
+  )
 }
 
-export default MyApp
+export default App
