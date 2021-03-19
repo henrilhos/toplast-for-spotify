@@ -40,7 +40,7 @@ const ChartFooter = ({ data, palette }: Props) => {
     >
       <Box
         height="100%"
-        width="535px"
+        width="550px"
         padding="12px"
         display="flex"
         alignItems="center"
@@ -68,14 +68,14 @@ const ChartFooter = ({ data, palette }: Props) => {
       </Box>
       <Box
         height="100%"
-        width="215px"
+        width="200px"
         padding="12px"
         display="flex"
         flexDirection="column-reverse"
       >
         <Box
           style={{ backgroundColor: siteBackgroundColor }}
-          padding="1rem"
+          padding="0.5rem"
           textAlign="center"
           color={siteTextColor}
         >
