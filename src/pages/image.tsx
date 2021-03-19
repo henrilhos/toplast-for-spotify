@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 
 import Chart from 'modules/Chart'
 import Core from 'modules/Core'
+import Header from 'modules/Header'
+import SEO from 'modules/SEO'
 import { Screenshot } from 'services/screenshot'
 
 const CHART_ID = 'chart-wrapper'
@@ -29,6 +31,8 @@ const Image = () => {
 
   return (
     <Core>
+      <SEO />
+      <Header />
       <Chart id={CHART_ID} isHidden />
 
       {image && <img alt="chart" src={image} />}
