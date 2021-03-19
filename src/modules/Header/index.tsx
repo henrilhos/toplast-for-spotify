@@ -29,7 +29,7 @@ const Header = (): JSX.Element => {
   }
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="static">
       <Toolbar className={classes.toolbar}>
         <Box alignItems="center" display="flex">
           <Typography variant="h6">{APP_NAME}</Typography>

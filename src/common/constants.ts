@@ -18,3 +18,5 @@ export const MENU = [
   { text: 'Star on GitHub', href: SHARE_GITHUB },
   { text: 'Share to Twitter', href: SHARE_TWITTER },
 ]
+
+export const CHART_ID = 'chart-wrapper'
