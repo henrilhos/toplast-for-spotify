@@ -1,52 +1,37 @@
-import { useContext } from 'react'
+import { useEffect, useState } from 'react'
 
-import { DependenciesContext } from 'contexts/Dependencies'
 import Chart from 'modules/Chart'
 import Core from 'modules/Core'
+import { Screenshot } from 'services/screenshot'
 
 const CHART_ID = 'chart-wrapper'
 
-const scrollToAsync = (x = 0, y = 0) =>
-  new Promise<void>((resolve) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-    ;(global as any).window.scrollTo(x, y)
+const Image = () => {
+  const [image, setImage] = useState('')
 
-    setTimeout(() => {
-      resolve()
-    }, 100)
-  })
-
-const useDownloadCanvas = () => {
-  const dependencies = useContext(DependenciesContext)
-
-  return async () => {
-    // Get node
+  const getCanvas = async () => {
     const node = document.getElementById(CHART_ID)
     if (!node) return
-
-    // Create dependency
-    const screenshotService = dependencies.create('screenshot', { node })
-
-    if (screenshotService)
-      await screenshotService.downloadImage('Toplast for Spotify')
+    const screenshot = new Screenshot({ node })
+    return screenshot.getImage()
   }
-}
 
-const Image = () => {
-  const downloadCanvas = useDownloadCanvas()
+  useEffect(() => {
+    const getChart = async () => {
+      const imageUrl = await getCanvas()
 
-  const handleDownloadChart = async () => {
-    await scrollToAsync()
-    await downloadCanvas()
-  }
+      if (imageUrl) setImage(imageUrl)
+    }
+
+    // eslint-disable-next-line no-console
+    getChart().catch((err) => console.error(err))
+  })
 
   return (
     <Core>
-      <Chart id={CHART_ID} />
+      <Chart id={CHART_ID} isHidden />
 
-      <button type="button" onClick={handleDownloadChart}>
-        Download image
-      </button>
+      {image && <img alt="chart" src={image} />}
     </Core>
   )
 }

@@ -35,9 +35,8 @@ class Screenshot {
 
     if (!canvas) return
 
-    return canvas
-      .toDataURL('image/jpeg', 0.8)
-      .replace(/^data:image\/jpeg;base64,/, '')
+    return canvas.toDataURL('image/jpeg')
+    // .replace(/^data:image\/jpeg;base64,/, '')
   }
 
   private async generateCanvas() {

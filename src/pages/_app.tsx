@@ -8,7 +8,6 @@ import { AppProps } from 'next/app'
 import { useEffect } from 'react'
 
 import { ChartProvider } from 'contexts/Chart'
-import { DependenciesProvider } from 'contexts/Dependencies'
 import { SpotifyProvider } from 'contexts/Spotify'
 
 const theme = createMuiTheme({
@@ -31,18 +30,16 @@ function App({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
-    <DependenciesProvider>
-      <StylesProvider injectFirst>
-        <ThemeProvider theme={theme}>
-          <SpotifyProvider>
-            <ChartProvider>
-              <CssBaseline />
-              <Component {...pageProps} />
-            </ChartProvider>
-          </SpotifyProvider>
-        </ThemeProvider>
-      </StylesProvider>
-    </DependenciesProvider>
+    <StylesProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <SpotifyProvider>
+          <ChartProvider>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ChartProvider>
+        </SpotifyProvider>
+      </ThemeProvider>
+    </StylesProvider>
   )
 }
 
