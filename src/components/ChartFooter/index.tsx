@@ -1,6 +1,6 @@
 import { createStyles, makeStyles } from '@material-ui/core'
+import Avatar from '@material-ui/core/Avatar'
 import Box from '@material-ui/core/Box'
-import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { Palette } from 'node-vibrant/lib/color'
 
@@ -14,6 +14,10 @@ const useStyles = makeStyles(() =>
     siteGrid: {
       display: 'flex',
       flexDirection: 'column-reverse',
+    },
+    image: {
+      width: '126px',
+      height: '126px',
     },
   })
 )
@@ -33,34 +37,51 @@ const ChartFooter = ({ data, palette }: Props) => {
       display="flex"
       height="150px"
       style={{ backgroundColor }}
-      paddingX="12px"
     >
-      <Grid container spacing={3} style={{ height: '100%' }}>
-        <Grid item xs={8}>
-          {/* Oi */}
-        </Grid>
-        <Grid item xs={4} className={classes.siteGrid}>
-          <Box
-            style={{ backgroundColor: siteBackgroundColor }}
-            padding="1rem"
-            textAlign="center"
-            color={siteTextColor}
-          >
-            <Typography variant="button">spotify.toplast.app</Typography>
-          </Box>
-        </Grid>
-      </Grid>
-      {/* <S.Wrapper backgroundColor={backgroundColor} color={textColor}> */}
-      {/*  <S.Container> */}
-      {/*    <S.Image src={data.image} /> */}
+      <Box
+        height="100%"
+        width="535px"
+        padding="12px"
+        display="flex"
+        alignItems="center"
+      >
+        <Avatar
+          alt={data.title}
+          className={classes.image}
+          src={data.image}
+          variant={data.type === 'artists' ? 'circular' : 'square'}
+        />
 
-      {/*    <S.Content> */}
-      {/*      <S.Description>{getDescriptionByType(data.type)}</S.Description> */}
-      {/*      <S.Title>{data.title}</S.Title> */}
-      {/*      {data.description && <S.Subtitle>{data.description}</S.Subtitle>} */}
-      {/*    </S.Content> */}
-      {/*  </S.Container> */}
-      {/* </S.Wrapper> */}
+        <Box paddingLeft="8px" maxWidth="385px">
+          <Typography variant="body1" noWrap>
+            {getDescriptionByType(data.type)}
+          </Typography>
+          <Typography noWrap variant="h5">
+            {data.title}
+          </Typography>
+          {data.description && (
+            <Typography noWrap variant="h6">
+              {data.description}
+            </Typography>
+          )}
+        </Box>
+      </Box>
+      <Box
+        height="100%"
+        width="215px"
+        padding="12px"
+        display="flex"
+        flexDirection="column-reverse"
+      >
+        <Box
+          style={{ backgroundColor: siteBackgroundColor }}
+          padding="1rem"
+          textAlign="center"
+          color={siteTextColor}
+        >
+          <Typography variant="button">spotify.toplast.app</Typography>
+        </Box>
+      </Box>
     </Box>
   )
 }

@@ -48,11 +48,13 @@ const ChartBody = ({ data, palette }: Props) => {
               variant={d.type === 'artists' ? 'circular' : 'square'}
             />
 
-            <Typography variant="subtitle1" className={classes.title}>
+            <Typography variant="subtitle1" className={classes.title} noWrap>
               {d.title}
             </Typography>
             {d.description && (
-              <Typography variant="subtitle1">{d.description}</Typography>
+              <Typography variant="subtitle1" noWrap>
+                {d.description}
+              </Typography>
             )}
           </Grid>
         ))}
