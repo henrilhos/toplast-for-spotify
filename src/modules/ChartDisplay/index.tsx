@@ -66,6 +66,13 @@ const ChartDisplay = () => {
     return screenshot.getImage()
   }
 
+  const downloadImage = () => {
+    const a = document.createElement('a')
+    a.href = image
+    a.setAttribute('download', `toplast_${new Date().getTime()}.jpg`)
+    a.click()
+  }
+
   useEffect(() => {
     const getImageUrl = async () => {
       await scrollToAsync()
@@ -113,6 +120,7 @@ const ChartDisplay = () => {
             }}
             color="primary"
             variant="contained"
+            onClick={downloadImage}
           >
             Download image
           </Button>
