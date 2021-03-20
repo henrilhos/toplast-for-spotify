@@ -6,6 +6,16 @@ import { useEffect, useState } from 'react'
 import { CHART_ID } from 'common/constants'
 import { Screenshot } from 'services/screenshot'
 
+const scrollToAsync = (x = 0, y = 0) =>
+  new Promise<void>((resolve) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-extra-semi, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+    ;(global as any).window.scrollTo(x, y)
+
+    setTimeout(() => {
+      resolve()
+    }, 100)
+  })
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     background: {
@@ -58,6 +68,7 @@ const ChartDisplay = () => {
 
   useEffect(() => {
     const getImageUrl = async () => {
+      await scrollToAsync()
       const imageUrl = await getImage()
       if (imageUrl) setImage(imageUrl)
     }
