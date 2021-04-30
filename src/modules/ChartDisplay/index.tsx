@@ -22,8 +22,11 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       display: 'flex',
       flexDirection: 'column',
-      height: 'calc(100vh - 64px)',
       justifyContent: 'center',
+      height: 'calc(100vh - 56px)',
+      [theme.breakpoints.up('sm')]: {
+        height: 'calc(100vh - 64px)',
+      },
     },
     container: {
       width: '100%',

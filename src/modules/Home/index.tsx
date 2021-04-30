@@ -1,3 +1,4 @@
+import { makeStyles } from '@material-ui/core'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -13,10 +14,20 @@ import { ChartContext } from 'contexts/Chart'
 import { SpotifyContext } from 'contexts/Spotify'
 import { getUserTopData } from 'services/spotify'
 
+const useStyles = makeStyles((theme) => ({
+  fullHeight: {
+    height: 'calc(100vh - 56px)',
+    [theme.breakpoints.up('sm')]: {
+      height: 'calc(100vh - 64px)',
+    },
+  },
+}))
+
 function Home() {
   const { token } = useContext(SpotifyContext)
   const { handleChart } = useContext(ChartContext)
 
+  const classes = useStyles()
   const [isLoading, setLoading] = useState(false)
   const router = useRouter()
 
@@ -35,10 +46,10 @@ function Home() {
   return (
     <Box
       alignItems="center"
+      className={classes.fullHeight}
       display="flex"
       justifyContent="center"
       textAlign="center"
-      height="100vh"
     >
       <Container>
         <Grid container direction="column" alignItems="center" justify="center">
@@ -96,8 +107,12 @@ function Home() {
               ❤️
             </span>{' '}
             by{' '}
-            <Link href="http://github.com/castilh0s" target="_blank">
+            <Link href="http://twitter.com/castilh0s" target="_blank">
               @castilh0s
+            </Link>{' '}
+            and{' '}
+            <Link href="http://twitter.com/pulajaguatirica" target="_blank">
+              @pulajaguatirica
             </Link>
           </Typography>
         </Grid>
