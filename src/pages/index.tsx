@@ -1,7 +1,7 @@
-import Core from 'modules/Core'
-import Header from 'modules/Header'
-import Home from 'modules/Home'
-import SEO from 'modules/SEO'
+import Core from "modules/Core";
+import Header from "modules/Header";
+import Home from "modules/Home";
+import SEO from "modules/SEO";
 
 function HomePage() {
   return (
@@ -11,7 +11,7 @@ function HomePage() {
 
       <Home />
     </Core>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;

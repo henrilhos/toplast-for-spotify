@@ -1,33 +1,33 @@
-import { createStyles, makeStyles } from '@material-ui/core'
-import Avatar from '@material-ui/core/Avatar'
-import Box from '@material-ui/core/Box'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import { Palette } from 'node-vibrant/lib/color'
+import { createStyles, makeStyles } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { Palette } from "node-vibrant/lib/color";
 
-import { GetUserTopArtistsOrTracks } from 'services/spotify'
+import { GetUserTopArtistsOrTracks } from "services/spotify";
 
-type Props = { data: GetUserTopArtistsOrTracks[]; palette?: Palette }
+type Props = { data: GetUserTopArtistsOrTracks[]; palette?: Palette };
 
 const useStyles = makeStyles(() =>
   createStyles({
     image: {
-      width: '170px',
-      height: '170px',
+      width: "170px",
+      height: "170px",
     },
     grid: {
-      textAlign: 'center',
+      textAlign: "center",
     },
     title: {
       fontWeight: 500,
     },
   })
-)
+);
 
 const ChartBody = ({ data, palette }: Props) => {
-  const classes = useStyles()
-  const textColor = palette?.Muted?.titleTextColor
-  const backgroundColor = palette?.Muted?.hex
+  const classes = useStyles();
+  const textColor = palette?.Muted?.titleTextColor;
+  const backgroundColor = palette?.Muted?.hex;
 
   return (
     <Box
@@ -45,7 +45,7 @@ const ChartBody = ({ data, palette }: Props) => {
               alt={d.title}
               className={classes.image}
               src={d.image}
-              variant={d.type === 'artists' ? 'circular' : 'square'}
+              variant={d.type === "artists" ? "circular" : "square"}
             />
 
             <Typography variant="subtitle1" className={classes.title} noWrap>
@@ -60,7 +60,7 @@ const ChartBody = ({ data, palette }: Props) => {
         ))}
       </Grid>
     </Box>
-  )
-}
+  );
+};
 
-export default ChartBody
+export default ChartBody;

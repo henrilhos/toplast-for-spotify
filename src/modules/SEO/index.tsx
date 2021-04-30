@@ -1,6 +1,6 @@
-import Head from 'next/head'
+import Head from "next/head";
 
-import { APP_NAME, DESCRIPTION, URL } from 'common/constants'
+import { APP_NAME, DESCRIPTION, URL } from "common/constants";
 
 const SEO = () => (
   <Head>
@@ -14,6 +14,6 @@ const SEO = () => (
     <meta name="twitter:title" content={APP_NAME} />
     <meta name="twitter:description" content={DESCRIPTION} />
   </Head>
-)
+);
 
-export default SEO
+export default SEO;

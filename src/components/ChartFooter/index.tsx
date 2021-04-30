@@ -1,34 +1,34 @@
-import { createStyles, makeStyles } from '@material-ui/core'
-import Avatar from '@material-ui/core/Avatar'
-import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
-import { Palette } from 'node-vibrant/lib/color'
+import { createStyles, makeStyles } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import { Palette } from "node-vibrant/lib/color";
 
-import { getDescriptionByType } from 'services/chart'
-import { GetUserTopArtistsOrTracks } from 'services/spotify'
+import { getDescriptionByType } from "services/chart";
+import { GetUserTopArtistsOrTracks } from "services/spotify";
 
-type Props = { data: GetUserTopArtistsOrTracks; palette?: Palette }
+type Props = { data: GetUserTopArtistsOrTracks; palette?: Palette };
 
 const useStyles = makeStyles(() =>
   createStyles({
     siteGrid: {
-      display: 'flex',
-      flexDirection: 'column-reverse',
+      display: "flex",
+      flexDirection: "column-reverse",
     },
     image: {
-      width: '126px',
-      height: '126px',
+      width: "126px",
+      height: "126px",
     },
   })
-)
+);
 
 const ChartFooter = ({ data, palette }: Props) => {
-  const classes = useStyles()
-  const textColor = palette?.LightMuted?.titleTextColor
-  const backgroundColor = palette?.LightMuted?.hex
+  const classes = useStyles();
+  const textColor = palette?.LightMuted?.titleTextColor;
+  const backgroundColor = palette?.LightMuted?.hex;
 
-  const siteTextColor = palette?.DarkMuted?.titleTextColor ?? '#fff'
-  const siteBackgroundColor = palette?.DarkMuted?.hex ?? '#000'
+  const siteTextColor = palette?.DarkMuted?.titleTextColor ?? "#fff";
+  const siteBackgroundColor = palette?.DarkMuted?.hex ?? "#000";
 
   return (
     <Box
@@ -49,7 +49,7 @@ const ChartFooter = ({ data, palette }: Props) => {
           alt={data.title}
           className={classes.image}
           src={data.image}
-          variant={data.type === 'artists' ? 'circular' : 'square'}
+          variant={data.type === "artists" ? "circular" : "square"}
         />
 
         <Box paddingLeft="8px" maxWidth="385px">
@@ -83,7 +83,7 @@ const ChartFooter = ({ data, palette }: Props) => {
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default ChartFooter
+export default ChartFooter;

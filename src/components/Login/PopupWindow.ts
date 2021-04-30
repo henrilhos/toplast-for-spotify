@@ -1,123 +1,123 @@
 const toQuery = (params: Record<string, string>, delimiter?: string) => {
-  const query = new URLSearchParams(params).toString()
+  const query = new URLSearchParams(params).toString();
 
-  if (delimiter) return query.replace(/&/g, delimiter)
-  return query
-}
+  if (delimiter) return query.replace(/&/g, delimiter);
+  return query;
+};
 
 const toParams = (query: string) => {
-  const q = query.replace(/^\??\//, '')
-  const urlParams = new URLSearchParams(q)
-  const entries = urlParams.entries()
+  const q = query.replace(/^\??\//, "");
+  const urlParams = new URLSearchParams(q);
+  const entries = urlParams.entries();
 
   return Array.from(entries).reduce<Record<string, string>>(
     (obj, [key, value]) => ({ ...obj, [key]: value }),
     {}
-  )
-}
+  );
+};
 
 type PopupWindowResponse = {
-  access_token: string
-  expires_in: string
-  token_type: string
-}
+  access_token: string;
+  expires_in: string;
+  token_type: string;
+};
 
 const SPOTIFY_SCOPE =
-  'user-top-read user-read-private user-read-recently-played'
-const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID as string
+  "user-top-read user-read-private user-read-recently-played";
+const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID as string;
 const SPOTIFY_REDIRECT_URL = process.env
-  .NEXT_PUBLIC_SPOTIFY_REDIRECT_URL as string
+  .NEXT_PUBLIC_SPOTIFY_REDIRECT_URL as string;
 
 class PopupWindow {
-  private readonly url: string
+  private readonly url: string;
 
-  private window?: Window | null
+  private window?: Window | null;
 
-  private intervalId?: number
+  private intervalId?: number;
 
-  private promise!: Promise<PopupWindowResponse>
+  private promise!: Promise<PopupWindowResponse>;
 
   constructor() {
     const search = toQuery({
       client_id: SPOTIFY_CLIENT_ID,
       redirect_uri: SPOTIFY_REDIRECT_URL,
       scope: SPOTIFY_SCOPE,
-      response_type: 'token',
-    })
+      response_type: "token",
+    });
 
-    this.url = `https://accounts.spotify.com/authorize?${search}`
+    this.url = `https://accounts.spotify.com/authorize?${search}`;
   }
 
   open() {
-    const id = 'spotify-authorization'
-    const options = { height: '1000', width: '600' }
-    const { url } = this
+    const id = "spotify-authorization";
+    const options = { height: "1000", width: "600" };
+    const { url } = this;
 
-    this.window = window.open(url, id, toQuery(options, ','))
+    this.window = window.open(url, id, toQuery(options, ","));
   }
 
   then(
     args?: ((value: PopupWindowResponse) => PromiseLike<void> | void) | null
   ) {
-    return this.promise?.then(args)
+    return this.promise?.then(args);
   }
 
   private close() {
-    this.cancel()
-    this.window?.close()
+    this.cancel();
+    this.window?.close();
   }
 
   private poll() {
     this.promise = new Promise<PopupWindowResponse>((resolve, reject) => {
       this.intervalId = window.setInterval(() => {
         try {
-          const popup = this.window
+          const popup = this.window;
 
           if (!popup || popup.closed) {
-            this.close()
-            reject(new Error('The popup was closed'))
-            return
+            this.close();
+            reject(new Error("The popup was closed"));
+            return;
           }
 
           if (
             popup.location.href === this.url ||
-            popup.location.pathname === 'blank'
+            popup.location.pathname === "blank"
           ) {
-            return
+            return;
           }
 
           const params = toParams(
-            popup.location.hash.replace(/^#/, '')
-          ) as PopupWindowResponse
+            popup.location.hash.replace(/^#/, "")
+          ) as PopupWindowResponse;
 
-          resolve(params)
+          resolve(params);
 
-          this.close()
+          this.close();
         } catch (error) {
           /*
            * Ignore DOMException: Blocked a frame with origin from accessing a cross-origin frame.
            */
         }
-      }, 500)
-    })
+      }, 500);
+    });
   }
 
   private cancel() {
     if (this.intervalId) {
-      window.clearInterval(this.intervalId)
-      this.intervalId = undefined
+      window.clearInterval(this.intervalId);
+      this.intervalId = undefined;
     }
   }
 
   static open() {
-    const popup = new this()
+    const popup = new this();
 
-    popup.open()
-    popup.poll()
+    popup.open();
+    popup.poll();
 
-    return popup
+    return popup;
   }
 }
 
-export default PopupWindow
-export type { PopupWindowResponse }
+export default PopupWindow;
+export type { PopupWindowResponse };

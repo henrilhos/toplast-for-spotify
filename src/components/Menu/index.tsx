@@ -1,21 +1,21 @@
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
-import * as S from './styles'
-import { MENU } from 'common/constants'
-import Login from 'components/Login'
-import User from 'components/User'
+import * as S from "./styles";
+import { MENU } from "common/constants";
+import Login from "components/Login";
+import User from "components/User";
 
 interface Props {
-  open: boolean
+  open: boolean;
 }
 
 function Menu({ open }: Props): JSX.Element {
   return (
     <S.Wrapper
       as={motion.div}
-      initial={{ y: '100%' }}
-      animate={{ y: open ? 0 : '100%' }}
-      transition={{ type: 'spring', damping: 18, stiffness: 100 }}
+      initial={{ y: "100%" }}
+      animate={{ y: open ? 0 : "100%" }}
+      transition={{ type: "spring", damping: 18, stiffness: 100 }}
     >
       <S.Menu>
         {MENU.map((item) => (
@@ -35,7 +35,7 @@ function Menu({ open }: Props): JSX.Element {
         <User />
       </Login>
     </S.Wrapper>
-  )
+  );
 }
 
-export default Menu
+export default Menu;

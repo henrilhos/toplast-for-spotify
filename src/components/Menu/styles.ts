@@ -1,5 +1,5 @@
-import Link from '@material-ui/core/Link'
-import styled from 'styled-components'
+import Link from "@material-ui/core/Link";
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ export const Wrapper = styled.div`
     justify-content: center;
 
     &:after {
-      content: '';
+      content: "";
 
       width: 100%;
       height: 100vh;
@@ -43,7 +43,7 @@ export const Wrapper = styled.div`
       z-index: -1;
     }
   }
-`
+`;
 
 export const Menu = styled.nav`
   display: flex;
@@ -59,7 +59,7 @@ export const Menu = styled.nav`
     margin-bottom: 0;
     border-left: 1px solid #ffffff70;
   }
-`
+`;
 
 export const Item = styled(Link)`
   margin-right: 1rem;
@@ -69,4 +69,4 @@ export const Item = styled(Link)`
     width: 100%;
     margin: 0.5rem 0;
   }
-`
+`;

@@ -1,9 +1,9 @@
-import { ReactNode } from 'react'
+import { ReactNode } from "react";
 
-type Prop = { children: ReactNode }
+type Prop = { children: ReactNode };
 
 const Core = ({ children }: Prop) => {
-  return <>{children}</>
-}
+  return <>{children}</>;
+};
 
-export default Core
+export default Core;

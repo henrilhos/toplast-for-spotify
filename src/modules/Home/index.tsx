@@ -1,47 +1,47 @@
-import { makeStyles } from '@material-ui/core'
-import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
-import Link from '@material-ui/core/Link'
-import Typography from '@material-ui/core/Typography'
-import { useRouter } from 'next/router'
-import { useContext, useState } from 'react'
+import { makeStyles } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Link from "@material-ui/core/Link";
+import Typography from "@material-ui/core/Typography";
+import { useRouter } from "next/router";
+import { useContext, useState } from "react";
 
-import Login from 'components/Login'
-import { ChartContext } from 'contexts/Chart'
-import { SpotifyContext } from 'contexts/Spotify'
-import { getUserTopData } from 'services/spotify'
+import Login from "components/Login";
+import { ChartContext } from "contexts/Chart";
+import { SpotifyContext } from "contexts/Spotify";
+import { getUserTopData } from "services/spotify";
 
 const useStyles = makeStyles((theme) => ({
   fullHeight: {
-    height: 'calc(100vh - 56px)',
-    [theme.breakpoints.up('sm')]: {
-      height: 'calc(100vh - 64px)',
+    height: "calc(100vh - 56px)",
+    [theme.breakpoints.up("sm")]: {
+      height: "calc(100vh - 64px)",
     },
   },
-}))
+}));
 
 function Home() {
-  const { token } = useContext(SpotifyContext)
-  const { handleChart } = useContext(ChartContext)
+  const { token } = useContext(SpotifyContext);
+  const { handleChart } = useContext(ChartContext);
 
-  const classes = useStyles()
-  const [isLoading, setLoading] = useState(false)
-  const router = useRouter()
+  const classes = useStyles();
+  const [isLoading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleChartGeneration = async (type: 'artists' | 'tracks') => {
-    setLoading(true)
+  const handleChartGeneration = async (type: "artists" | "tracks") => {
+    setLoading(true);
 
     if (token) {
-      const data = await getUserTopData({ token, type })
+      const data = await getUserTopData({ token, type });
       if (handleChart) {
-        handleChart(data)
-        return router.push('/image')
+        handleChart(data);
+        return router.push("/image");
       }
     }
-  }
+  };
 
   return (
     <Box
@@ -79,7 +79,7 @@ function Home() {
                       <Button
                         variant="contained"
                         color="primary"
-                        onClick={() => handleChartGeneration('tracks')}
+                        onClick={() => handleChartGeneration("tracks")}
                         fullWidth
                       >
                         Top tracks
@@ -89,7 +89,7 @@ function Home() {
                       <Button
                         variant="contained"
                         color="primary"
-                        onClick={() => handleChartGeneration('artists')}
+                        onClick={() => handleChartGeneration("artists")}
                         fullWidth
                       >
                         Top artists
@@ -102,15 +102,15 @@ function Home() {
           </Box>
 
           <Typography variant="body1" component="p">
-            Made with{' '}
+            Made with{" "}
             <span role="img" aria-label="heart">
               ❤️
-            </span>{' '}
-            by{' '}
+            </span>{" "}
+            by{" "}
             <Link href="http://twitter.com/castilh0s" target="_blank">
               @castilh0s
-            </Link>{' '}
-            and{' '}
+            </Link>{" "}
+            and{" "}
             <Link href="http://twitter.com/pulajaguatirica" target="_blank">
               @pulajaguatirica
             </Link>
@@ -118,7 +118,7 @@ function Home() {
         </Grid>
       </Container>
     </Box>
-  )
+  );
 }
 
-export default Home
+export default Home;

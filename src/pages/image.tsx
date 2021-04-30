@@ -1,9 +1,9 @@
-import { CHART_ID } from 'common/constants'
-import Chart from 'modules/Chart'
-import ChartDisplay from 'modules/ChartDisplay'
-import Core from 'modules/Core'
-import Header from 'modules/Header'
-import SEO from 'modules/SEO'
+import { CHART_ID } from "common/constants";
+import Chart from "modules/Chart";
+import ChartDisplay from "modules/ChartDisplay";
+import Core from "modules/Core";
+import Header from "modules/Header";
+import SEO from "modules/SEO";
 
 const Image = () => {
   return (
@@ -14,7 +14,7 @@ const Image = () => {
 
       <ChartDisplay />
     </Core>
-  )
-}
+  );
+};
 
-export default Image
+export default Image;

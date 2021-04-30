@@ -1,32 +1,32 @@
-import { createStyles, makeStyles } from '@material-ui/core'
-import Avatar from '@material-ui/core/Avatar'
-import Box from '@material-ui/core/Box'
-import IconButton from '@material-ui/core/IconButton'
-import Typography from '@material-ui/core/Typography'
-import ExitToAppIcon from '@material-ui/icons/ExitToApp'
-import { useContext } from 'react'
+import { createStyles, makeStyles } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
+import Box from "@material-ui/core/Box";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { useContext } from "react";
 
-import { SpotifyContext } from 'contexts/Spotify'
+import { SpotifyContext } from "contexts/Spotify";
 
 const useStyles = makeStyles(() =>
   createStyles({
     avatar: {
-      marginRight: '0.5rem',
+      marginRight: "0.5rem",
     },
     logout: {
-      marginLeft: '0.75rem',
-      paddingLeft: '0.75rem',
-      borderLeft: '1px solid #ffffff70',
+      marginLeft: "0.75rem",
+      paddingLeft: "0.75rem",
+      borderLeft: "1px solid #ffffff70",
     },
   })
-)
+);
 
 function User() {
-  const { user, setToken } = useContext(SpotifyContext)
-  const classes = useStyles()
+  const { user, setToken } = useContext(SpotifyContext);
+  const classes = useStyles();
 
   function logout() {
-    if (setToken) setToken('')
+    if (setToken) setToken("");
   }
 
   return (
@@ -42,7 +42,7 @@ function User() {
         </IconButton>
       </Box>
     </Box>
-  )
+  );
 }
 
-export default User
+export default User;
