@@ -35,9 +35,9 @@ const useStyles = makeStyles(() =>
       background: ({ bgColor }: StyleProps) =>
         `linear-gradient(90deg, ${bgColor} 5%, transparent 100%)`,
       height: '100%',
-      left: -5,
+      left: '-5px',
       position: 'absolute',
-      width: '100%',
+      width: '330px',
     },
     content: {
       display: 'flex',
