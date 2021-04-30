@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   flex: 1;
   overflow: hidden;
+  z-index: 1000;
 
   /* Override inline style */
   /* Desktop */
