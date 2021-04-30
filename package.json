@@ -5,7 +5,7 @@
   "repository": "git@github.com:toplast/toplast-for-spotify.git",
   "author": "Henrique de Castilhos <henrique@castilhos.dev>",
   "license": "MIT",
-  "url": "https://toplast-for-spotify.vercel.app/",
+  "url": "https://spotify.toplast.app/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
