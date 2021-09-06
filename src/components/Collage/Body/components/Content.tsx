@@ -10,7 +10,7 @@ interface Props {
 
 export const Content: FC<Props> = ({ description, image, title, type }) => (
   <Center height="100%" textAlign="center" width="100%">
-    <Box>
+    <Box width="157.5px">
       <Image
         alt={title}
         borderRadius={type === "artists" ? "full" : "none"}
@@ -19,8 +19,14 @@ export const Content: FC<Props> = ({ description, image, title, type }) => (
         src={image}
         width="100%"
       />
-      <Text fontSize="lg">{title}</Text>
-      {description && <Text fontSize="md">{description}</Text>}
+      <Text isTruncated fontSize="lg" fontWeight="semibold">
+        {title}
+      </Text>
+      {description && (
+        <Text isTruncated fontSize="md">
+          {description}
+        </Text>
+      )}
     </Box>
   </Center>
 );

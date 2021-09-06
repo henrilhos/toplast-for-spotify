@@ -24,7 +24,9 @@ export const Credits: FC<Props> = ({ palette }) => {
         padding={1}
         textAlign="center"
       >
-        <Text fontSize="lg">spotify.toplast.app</Text>
+        <Text fontSize="md" textTransform="uppercase" fontWeight="semibold">
+          spotify.toplast.app
+        </Text>
       </Box>
     </Box>
   );

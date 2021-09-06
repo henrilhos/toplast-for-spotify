@@ -22,18 +22,16 @@ export const Content: FC<Props> = ({ description, title, type }) => (
     paddingLeft="30px"
     paddingRight="325px"
   >
-    <Stack spacing={2}>
-      <Text fontSize="2xl" isTruncated>
-        {getDescriptionByType(type)}
+    <Text fontSize="xl" fontWeight="light" isTruncated>
+      {getDescriptionByType(type)}
+    </Text>
+    <Text fontSize="4xl" fontWeight="bold" isTruncated>
+      {title}
+    </Text>
+    {description && (
+      <Text fontSize="2xl" fontWeight="light" isTruncated>
+        {description}
       </Text>
-      <Text fontSize="5xl" isTruncated>
-        {title}
-      </Text>
-      {description && (
-        <Text fontSize="3xl" isTruncated>
-          {description}
-        </Text>
-      )}
-    </Stack>
+    )}
   </Box>
 );

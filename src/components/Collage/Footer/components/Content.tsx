@@ -30,12 +30,18 @@ export const Content: FC<Props> = ({ description, title, type, image }) => (
       height="100%"
     />
 
-    <Box paddingLeft={3} width="100%">
-      <Text isTruncated fontSize="md">{getDescriptionByType(type)}</Text>
-      <Text isTruncated fontSize="2xl">
+    <Box paddingLeft={3} width="calc(100% - 102px)">
+      <Text isTruncated fontSize="md" fontWeight="semibold">
+        {getDescriptionByType(type)}
+      </Text>
+      <Text isTruncated fontSize="2xl" fontWeight="bold">
         {title}
       </Text>
-      {description && <Text fontSize="lg" isTruncated>{description}</Text>}
+      {description && (
+        <Text fontSize="lg" isTruncated>
+          {description}
+        </Text>
+      )}
     </Box>
   </Box>
 );

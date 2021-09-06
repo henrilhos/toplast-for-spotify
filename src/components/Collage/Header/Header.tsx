@@ -2,7 +2,13 @@ import { Palette } from "node-vibrant/lib/color";
 import { FC } from "react";
 
 import { Data } from "../../../contexts";
-import { Container, Content, Image, ImageWrapper, Overlay } from "./components";
+import {
+  BoxImage,
+  Container,
+  Content,
+  ImageWrapper,
+  Overlay,
+} from "./components";
 
 interface Props {
   data: Data;
@@ -16,7 +22,7 @@ export const Header: FC<Props> = ({ data, palette }) => {
   return (
     <Container backgroundColor={backgroundColor} color={color}>
       <ImageWrapper>
-        <Image image={data.image} />
+        <BoxImage image={data.image} />
         <Overlay backgroundColor={backgroundColor} />
       </ImageWrapper>
 

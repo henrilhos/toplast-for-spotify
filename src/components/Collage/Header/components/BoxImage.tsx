@@ -5,7 +5,7 @@ interface Props {
   image: string;
 }
 
-export const Image: FC<Props> = ({ image }) => (
+export const BoxImage: FC<Props> = ({ image }) => (
   <Box
     backgroundImage={`url(${image})`}
     backgroundPosition="50% 25%"
