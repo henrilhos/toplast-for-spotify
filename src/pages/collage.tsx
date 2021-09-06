@@ -17,7 +17,7 @@ const Collage: NextPage = () => {
         toPng(ref.current, { cacheBust: true }).then((dataUrl) =>
           setImage(dataUrl)
         );
-    }, 500);
+    }, 1500);
   }, [ref]);
 
   useEffect(() => {
