@@ -1,6 +1,6 @@
 {
   "name": "@toplast/spotify",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Collage generator for Spotify listening charts",
   "author": "Henrique de Castilhos <henrique@castilhos.dev>",
