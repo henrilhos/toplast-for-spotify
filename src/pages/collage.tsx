@@ -1,22 +1,34 @@
-import { Flex } from "@chakra-ui/react";
+import { useBoolean } from "@chakra-ui/react";
+import { toPng } from "html-to-image";
 import { NextPage } from "next";
+import { useEffect, useRef, useState } from "react";
+
+import { Collage as UiCollage, CollageDisplay } from "../components";
 import { LayoutMain } from "../layouts";
 
-import { Collage as UiCollage } from "../components";
-
 const Collage: NextPage = () => {
+  const [isLoaded, setIsLoaded] = useBoolean(false);
+  const [image, setImage] = useState("");
+  const ref = useRef<HTMLDivElement>();
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (ref.current)
+        toPng(ref.current, { cacheBust: true }).then((dataUrl) =>
+          setImage(dataUrl)
+        );
+    }, 500);
+  }, [ref]);
+
+  useEffect(() => {
+    if (image) setIsLoaded.on();
+  }, [image]);
+
   return (
     <LayoutMain>
-      {/* <Flex
-        alignItems="center"
-        flexDirection="column"
-        height="100%"
-        justifyContent="center"
-        textAlign="center"
-        width="100%"
-      > */}
-      <UiCollage id="COLLAGE" />
-      {/* </Flex> */}
+      {/* @ts-ignore */}
+      <UiCollage ref={ref} isHidden />
+      <CollageDisplay image={image} isLoaded={isLoaded} />
     </LayoutMain>
   );
 };
