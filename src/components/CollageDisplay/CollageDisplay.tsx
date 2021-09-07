@@ -1,20 +1,14 @@
-import {
-  Button,
-  Flex,
-  Image,
-  Skeleton,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { Button, Flex, Image, useBreakpointValue } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import { FC } from "react";
 
 import { Container, Grid } from "./components";
+
 interface Props {
-  isLoaded: boolean;
   image: string;
 }
 
-export const CollageDisplay: FC<Props> = ({ isLoaded, image }) => {
+export const CollageDisplay: FC<Props> = ({ image }) => {
   const isFullWidth = useBreakpointValue({ base: true, md: false });
   const router = useRouter();
 
@@ -38,17 +32,15 @@ export const CollageDisplay: FC<Props> = ({ isLoaded, image }) => {
     >
       <Container>
         <Grid>
-          <Skeleton isLoaded={isLoaded}>
-            <Image
-              alt="Collage"
-              borderRadius="base"
-              fallbackSrc="https://via.placeholder.com/750"
-              maxH="700px"
-              maxW="700px"
-              src={image}
-              width="100%"
-            />
-          </Skeleton>
+          <Image
+            alt="Collage"
+            borderRadius="base"
+            fallbackSrc="https://via.placeholder.com/750"
+            maxH="700px"
+            maxW="700px"
+            src={image}
+            width="100%"
+          />
         </Grid>
         <Grid isFullWidth={isFullWidth}>
           <Button

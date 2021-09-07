@@ -1,36 +1,30 @@
-import { useBoolean } from "@chakra-ui/react";
-import { toPng } from "html-to-image";
-import { NextPage } from "next";
-import { useEffect, useRef, useState } from "react";
+import { Grid } from "@toplast/generator";
+import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 
-import { Collage as UiCollage, CollageDisplay } from "../components";
+import { CollageDisplay } from "../components";
 import { LayoutMain } from "../layouts";
 
-const Collage: NextPage = () => {
-  const [isLoaded, setIsLoaded] = useBoolean(false);
-  const [image, setImage] = useState("");
-  const ref = useRef<HTMLDivElement>();
+interface PageProps {
+  image: string;
+}
 
-  useEffect(() => {
-    setTimeout(() => {
-      if (ref.current)
-        toPng(ref.current, { cacheBust: true }).then((dataUrl) =>
-          setImage(dataUrl)
-        );
-    }, 1500);
-  }, [ref]);
-
-  useEffect(() => {
-    if (image) setIsLoaded.on();
-  }, [image]);
-
+const Collage: NextPage<PageProps> = ({ image }) => {
   return (
     <LayoutMain>
-      {/* @ts-ignore */}
-      <UiCollage ref={ref} isHidden />
-      <CollageDisplay image={image} isLoaded={isLoaded} />
+      <CollageDisplay image={image} />
     </LayoutMain>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const items = JSON.parse(decodeURIComponent(context.query.items as string));
+
+  const grid = new Grid(items, true);
+  const image = await grid.generate();
+
+  return { props: { image } };
 };
 
 export default Collage;

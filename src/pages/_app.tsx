@@ -1,15 +1,18 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import type { AppProps } from "next/app";
+import { AppProps } from "next/app";
+import { CookiesProvider } from "react-cookie";
 
 import { CollageProvider } from "../contexts";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <ChakraProvider>
-      <CollageProvider>
-        <Component {...pageProps} />
-      </CollageProvider>
-    </ChakraProvider>
+    <CookiesProvider>
+      <ChakraProvider>
+        <CollageProvider>
+          <Component {...pageProps} />
+        </CollageProvider>
+      </ChakraProvider>
+    </CookiesProvider>
   );
 };
 

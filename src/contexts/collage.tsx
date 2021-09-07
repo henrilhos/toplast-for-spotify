@@ -1,27 +1,28 @@
 import { FC, useEffect, useState } from "react";
 import { createContext } from "../utils/react";
+import Cookies from "universal-cookie";
+
+import { parse, serialize } from "cookie";
+import { useCookies } from "react-cookie";
 
 export interface Data {
   title: string;
   description: string;
   image: string;
-  type: "artists" | "tracks";
+  // type: "artists" | "tracks";
 }
 
-interface Collage {
-  header: Data;
-  body: Data[];
-  footer: Data;
-}
+type Collage = Data[];
 
 interface ContextType {
   collage: Collage | undefined;
   handleCollage: (collage: Collage) => void;
 }
 
-const getCollageFromLocalStorage = (): Collage | undefined => {
-  if (!process.browser) return undefined;
-  const collageStringified = window.localStorage.getItem("collage");
+const getCollageFromCookie = () => {
+  const cookies = new Cookies();
+
+  const collageStringified = cookies.get("collage");
   if (!collageStringified) return undefined;
   return JSON.parse(collageStringified) as Collage;
 };
@@ -31,8 +32,9 @@ const [Provider, useCollage, CollageContext] = createContext<ContextType>({
 });
 
 const CollageProvider: FC = ({ children }) => {
+  const [cookie, setCookie, removeCookie] = useCookies(["collage"]);
   const [collage, setCollage] = useState<Collage | undefined>(
-    getCollageFromLocalStorage()
+    getCollageFromCookie()
   );
 
   const handleCollage = (collage: Collage) => {
@@ -40,9 +42,12 @@ const CollageProvider: FC = ({ children }) => {
   };
 
   useEffect(() => {
-    if (collage)
-      window.localStorage.setItem("collage", JSON.stringify(collage));
-    else window.localStorage.removeItem("collage");
+    console.log(collage, cookie);
+
+    if (collage) {
+      setCookie("collage", JSON.stringify(collage));
+      console.log(cookie);
+    } else removeCookie("collage");
   }, [collage]);
 
   return <Provider value={{ collage, handleCollage }}>{children}</Provider>;

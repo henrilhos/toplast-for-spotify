@@ -5,7 +5,6 @@ import { useRouter } from "next/dist/client/router";
 import { useEffect } from "react";
 
 import { Credits, Form, FormSubmitProps, LoginButton } from "../components";
-import { useCollage } from "../contexts";
 import { LayoutMain } from "../layouts";
 import { getData } from "../services/spotify";
 
@@ -13,24 +12,19 @@ const Home: NextPage = () => {
   const [loading, setLoading] = useBoolean(false);
   const [session] = useSession();
   const router = useRouter();
-  const { handleCollage } = useCollage();
 
   useEffect(() => {
     if (session?.error === "RefreshAccessTokenError") {
       signIn("spotify", {
         callbackUrl: "/",
-      }); // Force sign in to hopefully resolve error
+      });
     }
   }, [session]);
 
   const handleFormSubmit = async ({ timeRange, type }: FormSubmitProps) => {
     setLoading.on();
     const data = await getData({ timeRange, type });
-    if (handleCollage) {
-      handleCollage(data);
-      router.push("/collage");
-    }
-    setLoading.off();
+    router.push(`/collage?items=${encodeURIComponent(JSON.stringify(data))}`);
   };
 
   return (

@@ -36,7 +36,6 @@ const getMeTop = async ({
     title: item?.name ?? "",
     description: item?.artists?.[0].name ?? "",
     image: item?.images?.[0].url ?? item?.album?.images?.[0].url ?? "",
-    type,
   }));
 };
 
@@ -47,18 +46,10 @@ export const getData = async ({ timeRange, type }: FormSubmitProps) => {
   const session = await getSession();
   const accessToken = session?.user.accessToken;
 
-  const [header, ...body] = await getMeTop({
+  return getMeTop({
     accessToken,
-    limit: 5,
+    limit: 25,
     timeRange,
     type,
   });
-  const [footer] = await getMeTop({
-    accessToken,
-    limit: 1,
-    timeRange,
-    type: getOppositeType(type),
-  });
-
-  return { header, body, footer };
 };
