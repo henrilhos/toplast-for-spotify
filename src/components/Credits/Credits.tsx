@@ -8,8 +8,8 @@ export const Credits = () => (
         ❤️
       </span>{" "}
       by{" "}
-      <Link color="red" href="http://twitter.com/castilh0s" target="_blank">
-        @castilh0s
+      <Link color="red" href="http://twitter.com/henrilhos" target="_blank">
+        @henrilhos
       </Link>{" "}
       and{" "}
       <Link
