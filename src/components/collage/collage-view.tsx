@@ -24,6 +24,8 @@ export function CollageView({
     let cancelled = false;
 
     (async () => {
+      // Wait for every image and the fonts to be fully ready — this replaces
+      // the old app's arbitrary 1.5s setTimeout before capture.
       await Promise.all(
         Array.from(node.querySelectorAll("img")).map((img) =>
           img.decode().catch(() => {}),
@@ -31,6 +33,11 @@ export function CollageView({
       );
       await document.fonts.ready;
 
+      // pixelRatio 2 → crisp 1500x1500 output.
+      // If the capture ever comes out blank (CORS-tainted canvas), swap the
+      // collage <img> srcs to the same-origin optimizer:
+      //   /_next/image?url=<encoded>&w=750&q=75
+      // (next.config images.remotePatterns already allows Spotify's CDNs.)
       const dataUrl = await toPng(node, {
         cacheBust: true,
         pixelRatio: 2,
@@ -58,7 +65,7 @@ export function CollageView({
   return (
     <main className="flex flex-1 flex-col items-center justify-center gap-6 px-6 py-12">
       {/* Offscreen capture target */}
-      <div aria-hidden className="fixed top-[-9999px] left-[-9999px]">
+      <div aria-hidden className="left-[-9999px] top-[-9999px] fixed">
         <div ref={collageRef}>
           <Collage data={data} palette={palette} />
         </div>
@@ -84,7 +91,7 @@ export function CollageView({
           type="button"
           onClick={download}
           disabled={!image}
-          className="cursor-pointer rounded-md bg-accent px-6 py-3 font-semibold text-white transition-colors hover:bg-accent-hover disabled:opacity-60"
+          className="rounded-md cursor-pointer bg-accent px-6 py-3 font-semibold text-white transition-colors hover:bg-accent-hover disabled:opacity-60"
         >
           Download image
         </button>

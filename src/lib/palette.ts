@@ -33,6 +33,7 @@ export async function extractPalette(
       credits: toSwatch(palette.DarkMuted),
     };
   } catch {
+    // A CDN hiccup should never break the collage — fall back to black/white.
     return FALLBACK_PALETTE;
   }
 }
