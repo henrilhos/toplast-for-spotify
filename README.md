@@ -30,8 +30,10 @@ Sign in with your Spotify account, pick a time range and whether you want tracks
 ### 1. Create a Spotify app
 
 1. Go to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) and create an app.
-2. Add `http://localhost:3000/api/auth/callback/spotify` as a **Redirect URI**.
+2. Add `http://127.0.0.1:3000/api/auth/callback/spotify` as a **Redirect URI**.
 3. Copy the **Client ID** and **Client Secret**.
+
+> **Note:** Spotify no longer allows `localhost` as a redirect URI — you must use the loopback IP literal `http://127.0.0.1:3000` (HTTP is permitted for loopback addresses). Make sure to open the app at `http://127.0.0.1:3000` too, so the callback URL matches the one you registered.
 
 The app requests the `user-read-email` and `user-top-read` scopes.
 
@@ -44,9 +46,12 @@ cp .env.sample .env.local
 ```
 
 ```env
+NEXTAUTH_URL=http://127.0.0.1:3000
 SPOTIFY_CLIENT_ID=your_client_id
 SPOTIFY_CLIENT_SECRET=your_client_secret
 ```
+
+`NEXTAUTH_URL` pins the callback URL to the loopback IP so it matches the Redirect URI you registered with Spotify.
 
 ### 3. Install and run
 
@@ -55,7 +60,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://127.0.0.1:3000](http://127.0.0.1:3000) in your browser.
 
 ## Available scripts
 
