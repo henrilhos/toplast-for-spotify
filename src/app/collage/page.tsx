@@ -36,5 +36,5 @@ export default async function CollagePage(props: PageProps<"/collage">) {
 
   const palette = await extractPalette(data.header.image);
 
-  return <CollageView data={data} palette={palette} />;
+  return <CollageView data={data} palette={palette} timeRange={timeRange} />;
 }

@@ -10,11 +10,16 @@ const TIME_RANGES: { value: TimeRange; label: string }[] = [
   { value: "long_term", label: "Overall" },
 ];
 
-export function TopForm() {
+export function TopForm({ defaultTimeRange }: { defaultTimeRange: TimeRange }) {
   const router = useRouter();
-  const [timeRange, setTimeRange] = useState<TimeRange>("short_term");
+  const [timeRange, setTimeRange] = useState<TimeRange>(defaultTimeRange);
   const [pendingType, setPendingType] = useState<TopType | null>(null);
   const [isPending, startTransition] = useTransition();
+
+  const selectTimeRange = (value: TimeRange) => {
+    setTimeRange(value);
+    window.history.replaceState(null, "", `/?time_range=${value}`);
+  };
 
   const submit = (type: TopType) => {
     setPendingType(type);
@@ -34,7 +39,7 @@ export function TopForm() {
             key={value}
             type="button"
             aria-pressed={timeRange === value}
-            onClick={() => setTimeRange(value)}
+            onClick={() => selectTimeRange(value)}
             className={`cursor-pointer not-last:border-foreground/20 not-last:border-r px-4 py-2 font-medium text-sm transition-colors ${
               timeRange === value
                 ? "bg-accent text-white"

@@ -3,8 +3,12 @@ import { Credits } from "@/components/credits";
 import { LoginButton } from "@/components/login-button";
 import { SignOutButton } from "@/components/sign-out-button";
 import { TopForm } from "@/components/top-form";
+import { parseTimeRange } from "@/lib/types";
 
-export default async function HomePage() {
+export default async function HomePage(props: PageProps<"/">) {
+  const searchParams = await props.searchParams;
+  const timeRange = parseTimeRange(searchParams.time_range);
+
   const session = await auth();
   const isAuthed = !!session?.accessToken && !session.error;
 
@@ -19,7 +23,7 @@ export default async function HomePage() {
 
       {isAuthed ? (
         <div className="flex flex-col items-center gap-4">
-          <TopForm />
+          <TopForm defaultTimeRange={timeRange} />
           <SignOutButton />
         </div>
       ) : (

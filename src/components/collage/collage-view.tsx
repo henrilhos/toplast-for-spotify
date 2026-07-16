@@ -4,14 +4,16 @@ import { toPng } from "html-to-image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Collage } from "@/components/collage/collage";
-import type { CollageData, CollagePalette } from "@/lib/types";
+import type { CollageData, CollagePalette, TimeRange } from "@/lib/types";
 
 export function CollageView({
   data,
   palette,
+  timeRange,
 }: {
   data: CollageData;
   palette: CollagePalette;
+  timeRange: TimeRange;
 }) {
   const collageRef = useRef<HTMLDivElement>(null);
   const [image, setImage] = useState<string | null>(null);
@@ -96,7 +98,7 @@ export function CollageView({
           Download image
         </button>
         <Link
-          href="/"
+          href={`/?time_range=${timeRange}`}
           className="rounded-md border border-foreground/20 px-6 py-3 font-semibold transition-colors hover:bg-foreground/5"
         >
           Back
