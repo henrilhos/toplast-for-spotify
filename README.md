@@ -6,21 +6,13 @@ Sign in with your Spotify account, pick a time range and whether you want tracks
 
 ## Features
 
-- 🔐 Sign in with Spotify (OAuth via [NextAuth.js](https://next-auth.js.org/))
+- 🔐 Sign in with Spotify (OAuth via [Auth.js](https://authjs.dev/))
 - 🎵 Build charts from your **top tracks** or **top artists**
 - 🗓️ Choose a time range: **1 month**, **6 months**, or **Overall**
 - 🎨 Dynamic color palette extracted from album/artist art with [node-vibrant](https://github.com/Vibrant-Colors/node-vibrant)
 - 🖼️ Export your collage as a PNG with [html-to-image](https://github.com/bubkoo/html-to-image)
 
-## Tech stack
-
-- [Next.js](https://nextjs.org/) 12 + [React](https://react.dev/) 17
-- [TypeScript](https://www.typescriptlang.org/)
-- [Chakra UI](https://chakra-ui.com/) + [Framer Motion](https://www.framer.com/motion/)
-- [NextAuth.js](https://next-auth.js.org/) for Spotify authentication
-- [axios](https://axios-http.com/) for the Spotify Web API
-
-## Getting started
+## Getting Started
 
 ### Prerequisites
 
@@ -37,6 +29,8 @@ Sign in with your Spotify account, pick a time range and whether you want tracks
 
 The app requests the `user-read-email` and `user-top-read` scopes.
 
+> **Dev mode:** while your Spotify app is in development mode, add your Spotify account under **User Management** in the dashboard, otherwise the top-items API returns 403.
+
 ### 2. Configure environment variables
 
 Copy the sample file and fill in your credentials:
@@ -46,12 +40,13 @@ cp .env.sample .env.local
 ```
 
 ```env
-NEXTAUTH_URL=http://127.0.0.1:3000
-SPOTIFY_CLIENT_ID=your_client_id
-SPOTIFY_CLIENT_SECRET=your_client_secret
+AUTH_URL=http://127.0.0.1:3000
+AUTH_SECRET=your_auth_secret # generate with: npx auth secret
+AUTH_SPOTIFY_ID=your_client_id
+AUTH_SPOTIFY_SECRET=your_client_secret
 ```
 
-`NEXTAUTH_URL` pins the callback URL to the loopback IP so it matches the Redirect URI you registered with Spotify.
+`AUTH_URL` pins the callback URL to the loopback IP so it matches the Redirect URI you registered with Spotify. `AUTH_SECRET` signs the session cookie — generate one with `npx auth secret` (or `openssl rand -base64 32`).
 
 ### 3. Install and run
 
@@ -61,15 +56,6 @@ npm run dev
 ```
 
 Open [http://127.0.0.1:3000](http://127.0.0.1:3000) in your browser.
-
-## Available scripts
-
-| Script          | Description                   |
-| --------------- | ----------------------------- |
-| `npm run dev`   | Start the development server  |
-| `npm run build` | Build the app for production  |
-| `npm run start` | Run the production build      |
-| `npm run lint`  | Lint the codebase with ESLint |
 
 ## How it works
 
