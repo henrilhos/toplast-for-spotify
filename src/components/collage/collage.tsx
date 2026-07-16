@@ -76,7 +76,7 @@ export function Collage({
                   src={item.image}
                   alt={item.title}
                   crossOrigin="anonymous"
-                  className={`aspect-square w-[130px] object-cover ${
+                  className={`aspect-square object-cover ${
                     isArtists ? "rounded-full" : ""
                   }`}
                 />
