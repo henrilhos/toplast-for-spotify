@@ -27,10 +27,10 @@ export async function extractPalette(
       }) satisfies Swatch;
 
     return {
-      header: toSwatch(palette.DarkMuted),
-      body: toSwatch(palette.Muted),
+      header: toSwatch(palette.DarkVibrant),
+      body: toSwatch(palette.DarkMuted),
       footer: toSwatch(palette.LightMuted),
-      credits: toSwatch(palette.DarkMuted),
+      credits: toSwatch(palette.DarkVibrant),
     };
   } catch {
     // A CDN hiccup should never break the collage — fall back to black/white.
