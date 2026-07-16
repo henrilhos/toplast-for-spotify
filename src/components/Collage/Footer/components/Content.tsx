@@ -24,6 +24,7 @@ export const Content: FC<Props> = ({ description, title, type, image }) => (
   >
     <Image
       alt={title}
+      aspectRatio={1}
       borderRadius={type === "artists" ? "full" : "none"}
       objectFit="cover"
       src={image}
