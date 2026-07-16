@@ -11,7 +11,6 @@ export const Credits = () => (
       <Link color="red" href="http://twitter.com/henrilhos" target="_blank">
         @henrilhos
       </Link>
-      .
     </Text>
   </Box>
 );
