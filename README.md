@@ -24,7 +24,7 @@ Sign in with your Spotify account, pick a time range and whether you want tracks
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) 16+
+- [Node.js](https://nodejs.org/) 24+
 - A [Spotify Developer](https://developer.spotify.com/dashboard) application
 
 ### 1. Create a Spotify app

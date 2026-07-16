@@ -5,6 +5,9 @@
   "description": "Collage generator for Spotify listening charts",
   "author": "Henrique de Castilhos <henrique@castilhos.dev>",
   "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
