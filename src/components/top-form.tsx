@@ -7,7 +7,7 @@ import type { TimeRange, TopType } from "@/lib/types";
 const TIME_RANGES: { value: TimeRange; label: string }[] = [
   { value: "short_term", label: "1 month" },
   { value: "medium_term", label: "6 months" },
-  { value: "long_term", label: "Overall" },
+  { value: "long_term", label: "12 months" },
 ];
 
 export function TopForm({ defaultTimeRange }: { defaultTimeRange: TimeRange }) {
