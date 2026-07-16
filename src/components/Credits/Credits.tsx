@@ -10,14 +10,6 @@ export const Credits = () => (
       by{" "}
       <Link color="red" href="http://twitter.com/henrilhos" target="_blank">
         @henrilhos
-      </Link>{" "}
-      and{" "}
-      <Link
-        color="red"
-        href="http://twitter.com/pulajaguatirica"
-        target="_blank"
-      >
-        @pulajaguatirica
       </Link>
       .
     </Text>
