@@ -8,7 +8,7 @@ Sign in with your Spotify account, pick a time range and whether you want tracks
 
 - 🔐 Sign in with Spotify (OAuth via [Auth.js](https://authjs.dev/))
 - 🎵 Build charts from your **top tracks** or **top artists**
-- 🗓️ Choose a time range: **1 month**, **6 months**, or **Overall**
+- 🗓️ Choose a time range: **1 month**, **6 months**, or **12 months**
 - 🎨 Dynamic color palette extracted from album/artist art with [node-vibrant](https://github.com/Vibrant-Colors/node-vibrant)
 - 🖼️ Export your collage as a PNG with [html-to-image](https://github.com/bubkoo/html-to-image)
 
@@ -59,7 +59,7 @@ Open [http://127.0.0.1:3000](http://127.0.0.1:3000) in your browser.
 
 ## How it works
 
-1. You authenticate with Spotify through NextAuth.
+1. You authenticate with Spotify through Auth.js.
 2. The app calls the Spotify Web API (`/me/top/{tracks|artists}`) for the selected time range.
 3. Your top items are laid out into a collage, colored from a palette extracted from the artwork.
 4. The rendered collage is converted to a PNG you can download and share.
